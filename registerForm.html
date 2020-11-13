@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Register page</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css"
+    />
+    <link rel="stylesheet" type="text/css" href="css/common.css" />
+    <script
+      type="text/javascript"
+      charset="utf8"
+      src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-2.0.3.js"
+    ></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+    <script
+      type="text/javascript"
+      src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.17.0/jquery.validate.min.js"
+    ></script>
+    <script type="text/javascript" src="js/common.js"></script>
+    <script src="https://www.google.com/recaptcha/api.js"></script>
+  </head>
+  <body>
+    <div class="row">
+      <div class="col-md-8 col-md-offset-2">
+        <div class="panel panel-login">
+          <div class="alert alert-info">
+            <h2>Bootstrap Register Form with Captcha using PHP</h2>
+          </div>
+          <div class="panel-body">
+            <div class="row">
+              <div class="col-lg-12">
+                <div
+                  class="alert alert-danger"
+                  role="alert"
+                  id="error"
+                  style="display: none"
+                >
+                  ...
+                </div>
+                <div
+                  class="alert alert-success"
+                  role="alert"
+                  id="success"
+                  style="display: none"
+                >
+                  ...
+                </div>
+                <form
+                  method="post"
+                  role="form"
+                  action="includes/registerFunction.php"
+                >
+                  <div class="messages"></div>
+                  <div class="controls">
+                    <div class="row">
+                      <div class="col-md-6">
+                        <div class="form-group">
+                          <label for="form_name">Name *</label>
+                          <input
+                            id="form_name"
+                            type="text"
+                            name="name"
+                            class="form-control"
+                            placeholder="Please enter your Name *"
+                            required="required"
+                            data-error="Name is required."
+                          />
+                          <div class="help-block with-errors"></div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-md-12">
+                        <div class="form-group">
+                          <label for="form_email">Email *</label>
+                          <input
+                            id="form_email"
+                            type="email"
+                            name="email"
+                            class="form-control"
+                            placeholder="Please enter your email *"
+                            required="required"
+                            data-error="Valid email is required."
+                          />
+                          <div class="help-block with-errors"></div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-md-12">
+                        <div class="form-group">
+                          <label for="form_contact">Phone Number *</label>
+                          <input
+                            id="form_contact"
+                            type="text"
+                            name="contact"
+                            class="form-control"
+                            placeholder="Please enter your contact *"
+                            required="required"
+                            data-error="Valid contact is required."
+                          />
+                          <div class="help-block with-errors"></div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-md-6">
+                        <div class="form-group">
+                          <label for="form_dob">Date of Birth *</label>
+                          <input
+                            id="form_dob"
+                            type="date"
+                            name="dob"
+                            class="form-control"
+                            required="required"
+                          />
+                        </div>
+                      </div>
+
+                      <div class="col-md-6">
+                        <div class="form-group">
+                          <label for="form_age">Age *</label>
+                          <input
+                            id="form_age"
+                            type="number"
+                            name="age"
+                            class="form-control"
+                            required="required"
+                            readonly
+                          />
+                        </div>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-md-12">
+                        <div class="form-group">
+                          <div
+                            class="g-recaptcha"
+                            data-sitekey="6LfIG-IZAAAAAHfNaKFZmZ_R-fLUtD2AEdRfn7ML"
+                          ></div>
+                        </div>
+                      </div>
+                      <div class="col-md-12">
+                        <button
+                          type="submit"
+                          class="btn btn-success btn-send"
+                          id="register_button"
+                          name="register_button"
+                          value="Register"
+                        >
+                          Register
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script type="text/javascript">
+      var dob = document.getElementById('form_dob')
+      dob.addEventListener('focusout', function () {
+        var date1 = new Date()
+        var dob_val = dob.value
+
+        var date2 = new Date(dob_val)
+        var y1 = date1.getFullYear()
+        //getting current year
+        var y2 = date2.getFullYear()
+        //getting dob year
+        var age = y1 - y2
+        //calculating age
+        document.getElementById('form_age').value = age
+        document.getElementById('form_age').focus()
+      })
+    </script>
+  </body>
+</html>
